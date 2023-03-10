@@ -2,6 +2,8 @@
 
 Library for playing guitar sounds (metronome, chords, beats, etc)
 
+# NOTE: so far only for Android!
+
 ## Installation
 
 ```sh
@@ -10,12 +12,22 @@ npm install react-native-guitar
 
 ## Usage
 
+### Metronome:
+
 ```js
-import { multiply } from 'react-native-guitar';
+import { Metronome } from 'react-native-guitar';
 
 // ...
 
-const result = await multiply(3, 7);
+onPress = () => {
+  Metronome.play(100); // play with bpm=100
+};
+
+// ...
+
+onPress = () => {
+  Metronome.stop(); // stop playing
+};
 ```
 
 ## Contributing
