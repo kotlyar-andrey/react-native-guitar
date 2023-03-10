@@ -17,10 +17,6 @@ const Guitar = NativeModules.Guitar
       }
     );
 
-export function multiply(a: number, b: number): Promise<number> {
-  return Guitar.multiply(a, b);
-}
-
 export const Metronome = {
   play: Guitar.metronomePlay,
   stop: Guitar.metronomeStop,
