@@ -1,18 +1,44 @@
 import * as React from 'react';
 
 import { StyleSheet, View, Text } from 'react-native';
-import { multiply } from 'react-native-guitar';
+import { Metronome } from 'react-native-guitar';
 
 export default function App() {
-  const [result, setResult] = React.useState<number | undefined>();
+  const { play, stop } = Metronome;
 
-  React.useEffect(() => {
-    multiply(3, 7).then(setResult);
-  }, []);
-
+  const [bpm, setBpm] = React.useState(60);
   return (
     <View style={styles.container}>
-      <Text>Result: {result}</Text>
+      <Text
+        onPress={() => {
+          setBpm(bpm + 10);
+        }}
+      >
+        +
+      </Text>
+      <Text
+        onPress={() => {
+          setBpm(bpm - 10);
+        }}
+      >
+        -
+      </Text>
+      <Text>--------</Text>
+      <Text
+        onPress={() => {
+          play(bpm);
+        }}
+      >
+        {bpm}
+      </Text>
+      <Text>--------</Text>
+      <Text
+        onPress={() => {
+          stop();
+        }}
+      >
+        Stop
+      </Text>
     </View>
   );
 }
