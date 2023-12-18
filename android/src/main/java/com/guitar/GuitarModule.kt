@@ -26,6 +26,16 @@ class GuitarModule(reactContext: ReactApplicationContext) :
     metronome.stop();
   }
 
+  @ReactMethod
+  fun metronomeInit() {
+    metronome.playerInitialize();
+  }
+
+  @ReactMethod
+  fun metronomeRelease() {
+    metronome.playerRelease();
+  }
+
   companion object {
     const val NAME = "Guitar"
   }

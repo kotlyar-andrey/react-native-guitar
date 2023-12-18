@@ -30,7 +30,7 @@ class Metronome {
   var samplesCounter: Int = 1;
   
 
-  private fun playerInitialize() {
+  public fun playerInitialize() {
     player = AudioTrack.Builder()
         .setAudioAttributes(
             AudioAttributes.Builder()
@@ -47,7 +47,7 @@ class Metronome {
         .build();
   }
 
-  private fun playerRelease() {
+  public fun playerRelease() {
     player?.stop();
     player?.release();
     player = null;
@@ -81,15 +81,17 @@ class Metronome {
       if (isPlaying) {
         player?.flush();
       } else {
+        if (player == null) {
+          playerInitialize();
+        }
         isPlaying = true;
         thread {
-          playerInitialize();
           player?.play();
           while (isPlaying) {
             val tone = getTone(samplesForOneTik);
             player?.write(tone, 0, tone.size)
           }
-          playerRelease();
+          
         }
       }
 
@@ -98,6 +100,7 @@ class Metronome {
 
   public fun stop() {
     isPlaying = false;
+    player?.stop();
   }
 }
 

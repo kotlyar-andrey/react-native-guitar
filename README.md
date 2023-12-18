@@ -19,6 +19,13 @@ import { Metronome } from 'react-native-guitar';
 
 // ...
 
+useEffect(() => {
+  Metronome.init(); // initialization player
+  return () => {
+    Metronome.release(); // release
+  };
+}, []);
+
 onPress = () => {
   Metronome.play(100); // play with bpm=100
 };

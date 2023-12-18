@@ -20,4 +20,6 @@ const Guitar = NativeModules.Guitar
 export const Metronome = {
   play: Guitar.metronomePlay,
   stop: Guitar.metronomeStop,
+  init: Guitar.metronomeInit,
+  release: Guitar.metronomeRelease,
 };

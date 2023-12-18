@@ -4,9 +4,17 @@ import { StyleSheet, View, Text } from 'react-native';
 import { Metronome } from 'react-native-guitar';
 
 export default function App() {
-  const { play, stop } = Metronome;
+  const { play, stop, init, release } = Metronome;
 
   const [bpm, setBpm] = React.useState(60);
+
+  React.useEffect(() => {
+    init();
+    return () => {
+      release();
+    };
+  });
+
   return (
     <View style={styles.container}>
       <Text
